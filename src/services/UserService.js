@@ -34,8 +34,8 @@ const UserService = {
   
     // get user role
     getCurrentUserRole: () => {
-      let loginData = JSON.parse(sessionStorage.getItem("loginData"));
-      let userRoles = JSON.parse(sessionStorage.getItem("userRoles"));
+     // let loginData = JSON.parse(sessionStorage.getItem("loginData"));
+      //let userRoles = JSON.parse(sessionStorage.getItem("userRoles"));
   
       let roleD = false;
       // if (loginData && loginData.user.role && userRoles.length) {

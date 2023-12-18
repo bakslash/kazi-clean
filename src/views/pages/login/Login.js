@@ -1,7 +1,7 @@
 /* prettier-ignore */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
 import { userLogin, userRoles } from "src/services/api";
 import {
   CButton,
@@ -15,9 +15,9 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-  CDropdown,
-  CDropdownItem,
-  CDropdownToggle,
+ // CDropdown,
+  //CDropdownItem,
+  //CDropdownToggle,
   CFormSelect,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
@@ -49,7 +49,7 @@ const Login = () => {
     }
   }
   fetchData()
-  }, []);
+  }, [navigate]);
   console.log(roles);
 
   const handleChange = (e) => {

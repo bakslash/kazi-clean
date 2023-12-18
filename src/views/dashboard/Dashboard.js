@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {
-  CAvatar,
+  //CAvatar,
   CButton,
   CButtonGroup,
   CCard,

@@ -1,22 +1,22 @@
 import React from 'react'
 
 import {
-  CAvatar,
+  //CAvatar,
   CButton,
   CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
-  CCardHeader,
+  //CCardHeader,
   CCol,
   CProgress,
   CRow,
-  CTable,
-  CTableBody,
-  CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
+  //CTable,
+  //CTableBody,
+  //CTableDataCell,
+  //CTableHead,
+  //CTableHeaderCell,
+  //CTableRow,
 } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
@@ -39,7 +39,7 @@ import {
   cifUs,
   cibTwitter,
   cilCloudDownload,
-  cilPeople,
+  //cilPeople,
   cilUser,
   cilUserFemale,
 } from '@coreui/icons'

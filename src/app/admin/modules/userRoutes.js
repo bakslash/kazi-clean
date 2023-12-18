@@ -1,8 +1,8 @@
 import React from 'react'
-import {  Route, Routes } from 'react-router-dom'
+// import {  Route, Routes } from 'react-router-dom'
 
-import RequireAuth from "../../../RequireAuth";
-import UserService from '../../../services/UserService'
+// import RequireAuth from "../../../RequireAuth";
+// import UserService from '../../../services/UserService'
 
 const Dashboard = React.lazy(() => import('../../../views/dashboard/Dashboard'))
 const Orders = React.lazy(() => import('../../../views/pages/Orders'))
@@ -10,16 +10,16 @@ const AddCustomers = React.lazy(() => import('../../../views/pages/AddCustomers'
 const Customers = React.lazy(() => import('../../../views/pages/Customers'))
 const NewOrder = React.lazy(() => import('../../../views/pages/NewOrder'))
 const Inventory = React.lazy(() => import('../../../views/pages/Inventory'))
-const Expenses = React.lazy(() => import('../../../views/pages/Expenses'))
+//const Expenses = React.lazy(() => import('../../../views/pages/Expenses'))
 const Report = React.lazy(() => import('../../../views/pages/Report'))
 const Success = React.lazy(() => import('../../../views/pages/Success'))
 
 
 
 const Tables = React.lazy(() => import('../../../views/base/tables/Tables'))
-const Validation = React.lazy(() => import('../../../views/forms/validation/Validation'))
+// const Validation = React.lazy(() => import('../../../views/forms/validation/Validation'))
 
-const Charts = React.lazy(() => import('../../../views/charts/Charts'))
+// const Charts = React.lazy(() => import('../../../views/charts/Charts'))
 
 const routes = [
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { userLogin, userRoles } from "src/services/api";
+import {  userRoles } from "src/services/api";
 import {
   CButton,
   CCard,
@@ -12,20 +12,20 @@ import {
   CForm,
   CFormInput,
   CFormSelect,
-  CInputGroup,
-  CInputGroupText,
+  //CInputGroup,
+ // CInputGroupText,
   CRow,
   CFormLabel
 } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
-import { cilLockLocked, cilUser } from "@coreui/icons";
+//import CIcon from "@coreui/icons-react";
+//import { cilLockLocked, cilUser } from "@coreui/icons";
 
 // ... (imports remain the same)
 
 // ... (imports remain the same)
 
 const Add = () => {
-    const navigate = useNavigate();
+  //  const navigate = useNavigate();
     const [user, setUser] = useState({ roleId: "" });
     const [services, setServices] = useState([]); 
     const [orderForm, setOrderForm] = useState({
@@ -51,6 +51,8 @@ const Add = () => {
           const response = await userRoles();
           if (response.status === 200) {
             setRoles(response.data);
+            setServices(response)
+            console.log(roles);
           } else {
             const errorMessage = response.data.message || "role fetching failed";
             console.error(errorMessage);

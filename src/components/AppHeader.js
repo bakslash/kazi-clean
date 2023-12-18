@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   CContainer,
   CHeader,
-  CHeaderBrand,
+ // CHeaderBrand,
   CHeaderDivider,
   CHeaderNav,
   CHeaderToggler,
