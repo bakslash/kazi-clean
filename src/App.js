@@ -24,7 +24,7 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 // const Inventory = React.lazy(() => import('./views/pages/Inventory'))
 // const Client = React.lazy(() => import('./views/pages/AddCustomers'))
 
-const Expenses = React.lazy(() => import('./views/pages/Expenses'))
+//const Expenses = React.lazy(() => import('./views/pages/Expenses'))
 
 class App extends Component {
   render() {

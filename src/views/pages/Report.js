@@ -51,7 +51,7 @@ import {
 // import avatar5 from 'src/assets/images/avatars/5.jpg'
 // import avatar6 from 'src/assets/images/avatars/6.jpg'
 
-import WidgetsBrand from '../widgets/WidgetsBrand'
+//import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import { AppSidebar } from 'src/components';
 

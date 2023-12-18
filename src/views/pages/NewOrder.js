@@ -62,7 +62,7 @@ const Add = () => {
         }
       }
       fetchData();
-    }, []);
+    }, [roles]);
   
     const handleChange = (e) => {
       const { name, value } = e.target;
