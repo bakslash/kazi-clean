@@ -76,14 +76,14 @@ const Add = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-    
+      const apiUrl = process.env.REACT_APP_API_URL;
       try {
         // Assuming you have a function to fetch services
         // const servicesResponse = await fetchServices();
         // setServices(servicesResponse);
     
         // Use orderForm state to send data to the server
-        const response = await axios.post("http://localhost:5000/customers/add", orderForm);
+        const response = await axios.post(`${apiUrl}/customers/add`, orderForm);
     
         if (response.status === 201) {
           // Order added successfully

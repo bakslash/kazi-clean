@@ -17,11 +17,11 @@ import {
 
 const ViewCustomers = () => {
   const [customers, setCustomers] = useState([]);
-
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     async function fetchCustomers() {
       try {
-        const response = await axios.get("http://localhost:5000/customers");
+        const response = await axios.get(`${apiUrl}/customers`);
 
         if (response.status === 200) {
           setCustomers(response.data);

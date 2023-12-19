@@ -17,11 +17,12 @@ const ViewOrder = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     const fetchOrders = async () => {
+      const apiUrl = process.env.REACT_APP_API_URL;
       try {
-        const response = await fetch('http://localhost:5000/orders');
+        const response = await fetch(`${apiUrl}/orders`);
         const data = await response.json();
         console.log('d',data);
         setOrders(data);

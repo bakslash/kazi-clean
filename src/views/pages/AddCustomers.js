@@ -31,10 +31,10 @@ const AddCustomer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const apiUrl = process.env.REACT_APP_API_URL;
     try {
       // Use customerForm state to send data to the server
-      const response = await axios.post("http://localhost:5000/customers/add", customerForm);
+      const response = await axios.post(`${apiUrl}/customers/add`, customerForm);
 
       if (response.status === 201) {
         // Customer added successfully
