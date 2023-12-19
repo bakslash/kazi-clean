@@ -34,7 +34,7 @@ const ViewCustomers = () => {
     }
 
     fetchCustomers();
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className="min-vh-100 d-flex flex-row align-items-center">
