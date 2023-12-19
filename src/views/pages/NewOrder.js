@@ -27,7 +27,7 @@ import {
 const Add = () => {
   //  const navigate = useNavigate();
     const [user, setUser] = useState({ roleId: "" });
-    const [services, setServices] = useState([]); 
+    const [services, setServices] = useState(['carpet','laundry']); 
     const [orderForm, setOrderForm] = useState({
       date: "",
       first_name: "",
