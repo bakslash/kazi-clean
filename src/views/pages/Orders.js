@@ -23,6 +23,7 @@ const ViewOrder = () => {
       const apiUrl = process.env.REACT_APP_API_URL;
       try {
         const response = await fetch(`${apiUrl}/orders`);
+        console.log('res',response);
         const data = await response.json();
         console.log('d',data);
         setOrders(data);

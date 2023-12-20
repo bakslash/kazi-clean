@@ -20,6 +20,7 @@ const ViewCustomers = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     async function fetchCustomers() {
+      console.log('url',apiUrl);
       try {
         const response = await axios.get(`${apiUrl}/customers`);
 
