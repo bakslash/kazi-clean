@@ -39,6 +39,7 @@ const Login = () => {
         try {
       const response = await userRoles();
       if (response.status === 200) {
+        console.log('r',response);
         setRoles(response.data);
       } else {
         const errorMessage = response.data.message || "role fetching failed";
