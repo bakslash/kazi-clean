@@ -46,6 +46,10 @@ const ViewOrder = () => {
     return <p>{error}</p>;
   }
 
+  // Check if orders is an array before using map
+  if (!Array.isArray(orders)) {
+    return <p>Invalid data format for orders</p>;
+  }
   return (
     <>
       <h4>View Orders</h4>
