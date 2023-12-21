@@ -59,7 +59,7 @@ const Dashboard = () => {
  const data = window.sessionStorage.getItem(
     "loginData",)
     console.log(data,'tet');
-  const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  //const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   // const progressExample = [
   //   { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },

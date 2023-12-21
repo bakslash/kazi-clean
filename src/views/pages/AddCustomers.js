@@ -43,7 +43,7 @@ const AddCustomer = () => {
         // Customer added successfully
         // You can navigate to another page or show a success message
         console.log('res',response);
-       // navigate('admin/success');
+        navigate('admin/success');
       } else {
         console.error("Customer creation failed:", response.data.error);
         // Handle error scenario

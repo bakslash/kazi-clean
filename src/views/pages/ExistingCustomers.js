@@ -58,7 +58,7 @@ const ExistingCustomers = () => {
     }
 
     fetchCustomer();
-  }, [apiUrl]);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
