@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { userRoles } from "src/services/api";
+import { useParams } from 'react-router-dom';
+
 import {
   CButton,
   CCard,
@@ -12,26 +13,19 @@ import {
   CForm,
   CFormInput,
   CFormSelect,
-  //CInputGroup,
-  // CInputGroupText,
+
   CRow,
   CFormLabel
 } from "@coreui/react";
-//import CIcon from "@coreui/icons-react";
-//import { cilLockLocked, cilUser } from "@coreui/icons";
 
-// ... (imports remain the same)
 
-// ... (imports remain the same)
+const ExistingCustomers = () => {
+    const navigate = useNavigate();
+  const { id } = useParams();
 
-const Add = () => {
-  //  const navigate = useNavigate();
-  const [user, setUser] = useState({ roleId: "" });
-  const [services, setServices] = useState(['carpet', 'laundry']);
+  const [customer, setCustomer] = useState([]);
   const [orderForm, setOrderForm] = useState({
-    date: "",
-    first_name: "",
-    last_name: "",
+
     uom: "",
     pickUpDate: "",
     pickUpTime: "",
@@ -40,84 +34,58 @@ const Add = () => {
     discountReason: "",
     quantity: "",
     service: "",
-    phone_number: "",
-    address: "",
+
   });
 
   const [cost, setCost] = useState();
-  const [phoneData, setPhoneData] = useState({ phone_number: "" });
-
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    async function fetchData() {
+
+    async function fetchCustomer() {
+
       try {
-        const response = await userRoles();
+        const response = await axios.get(`${apiUrl}/customers/${id}`);
+
         if (response.status === 200) {
-          setRoles(response.data);
-          setServices(response)
-         
+          console.log('res', response);
+          setCustomer(response.data);
         } else {
-          const errorMessage = response.data.message || "role fetching failed";
-          console.error(errorMessage);
+          console.error("Failed to fetch customers:", response.data.error);
         }
       } catch (error) {
-        console.log(error);
+        console.error("API request error:", error);
       }
     }
-    fetchData();
-  }, []);
 
-
+    fetchCustomer();
+  }, [apiUrl]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setCost(orderForm.totalPrice - orderForm.discountAmount)
-    
-      setOrderForm({ ...orderForm, [name]: value });
-    
+    const newCost = orderForm.totalPrice - orderForm.discountAmount;
+    setCost(newCost)
+    setOrderForm({
+      ...orderForm,
+      ...customer,
+      [name]: value,
+
+    });
+
   };
-
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const navigate = useNavigate();
-
-  const handleFind = async (e) => {
-    try {
-      console.log(phoneData);
-      const response = await axios.post(`${apiUrl}/customers/phone`, phoneData);
-
-      if (response.status === 200) {
-        setCustomer(response.data);
-        console.log('res1', response.data);
-
-        // Use navigate to programmatically navigate to the specified route
-        navigate(`/admin/existing_customer/${response.data.id}`);
-        console.log('loc', window.location);
-      } else {
-        console.error("Failed to fetch customers:", response.data.error);
-      }
-    } catch (error) {
-      console.error("API request error:", error);
-    }
-  };
-
-  
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiUrl = process.env.REACT_APP_API_URL;
+
     try {
-      console.log('order',orderForm);
-      console.log('cost',cost);
-     
+      console.log('order', orderForm);
 
       // Use orderForm state to send data to the server
       const response = await axios.post(`${apiUrl}/orders/add`, orderForm);
-console.log('order',orderForm)
+      console.log('order', orderForm)
       if (response.status === 201) {
-        // Order added successfully
-        // You can navigate to another page or show a success message
-        // navigate('/success-page');
+
+        navigate('admin/success');
         console.log(response);
       } else {
         console.error("Order creation failed:", response.data.error);
@@ -128,15 +96,7 @@ console.log('order',orderForm)
     }
   };
 
-  const handleInputChange = (e) => {
-    setPhoneData({
-      ...phoneData,
-      [e.target.name]: e.target.type === 'number' ? parseInt(e.target.value, 10) : parseInt(e.target.value),
-    });
-  };
-  
-  
- 
+
   return (
     <div className="min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -145,46 +105,17 @@ console.log('order',orderForm)
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <h1 className="mb-4">New Order</h1>
-                  <CRow className="mb-4">
-  <CCol md={4}>
-  <CFormInput
-  placeholder="Phone"
-  name="phone_number"  // Use the same name as the key in the state object
-  value={phoneData.phone_number}
-  onChange={handleInputChange}
-  className="mb-3"
-/>
-  </CCol>
-  <CCol md={4}>
-    <CButton
-      onClick={handleFind}
-      type="submit"
-      color="success"
-      className="px-4 "
-    >
-      Find if Existing Customer
-    </CButton>
-  </CCol>
-</CRow>
-
+                  <h3 className="mb-4">Add Order to Existing Customer</h3>
                   <CForm onSubmit={handleSubmit}>
                     <CRow>
                       {/* Order form fields (first column) */}
                       <CCol md={4}>
-                        {/* <CFormLabel>Date</CFormLabel>
-                        <CFormInput
-                          placeholder="Date"
-                          name="date"
-                          value={orderForm.date}
-                          onChange={handleChange}
-                          className="mb-3"
-                        /> */}
+
                         <CFormLabel>First Name</CFormLabel>
                         <CFormInput
                           placeholder="First Name"
                           name="first_name"
-                          value={orderForm.first_name}
+                          value={customer.first_name}
                           onChange={handleChange}
                           className="mb-3"
                         />
@@ -192,7 +123,7 @@ console.log('order',orderForm)
                         <CFormInput
                           placeholder="Last Name"
                           name="last_name"
-                          value={orderForm.last_name}
+                          value={customer.last_name}
                           onChange={handleChange}
                           className="mb-3"
                         />
@@ -209,20 +140,6 @@ console.log('order',orderForm)
                           <option value="bags">Bags</option>
                         </CFormSelect>
 
-                        {/* <CFormSelect
-                            aria-label="Service uom"
-                            name="uom"
-                            value={orderForm.service}
-                            onChange={handleChange}
-                            className="mb-3"
-                          >
-                            <option value="">Select UoM</option>
-                            {services.map((service) => (
-                              <option key={service.id} value={service.id}>
-                                {service.name}
-                              </option>
-                            ))}
-                          </CFormSelect> */}
                         <CFormLabel>Service</CFormLabel>
                         <CFormSelect
                           aria-label="Service"
@@ -235,20 +152,7 @@ console.log('order',orderForm)
                           <option value="kgs">Laundry </option>
                           <option value="bags">Carpet</option>
                         </CFormSelect>
-                        {/* <CFormSelect
-                            aria-label="Service select"
-                            name="service"
-                            value={orderForm.service}
-                            onChange={handleChange}
-                            className="mb-3"
-                          >
-                            <option value="">Select Service</option>
-                            {services.map((service) => (
-                              <option key={service.id} value={service.id}>
-                                {service.name}
-                              </option>
-                            ))}
-                          </CFormSelect> */}
+
                       </CCol>
 
                       {/* Order form fields (second column) */}
@@ -275,7 +179,7 @@ console.log('order',orderForm)
                         <CFormInput
                           placeholder="phone_number"
                           name="phone_number"
-                          value={orderForm.phone_number}
+                          value={customer.phone_number}
                           onChange={handleChange}
                           className="mb-3"
                         />
@@ -311,7 +215,7 @@ console.log('order',orderForm)
                         <CFormInput
                           placeholder="Address"
                           name="address"
-                          value={orderForm.address}
+                          value={customer.address}
                           onChange={handleChange}
                           className="mb-3"
                         />
@@ -319,13 +223,24 @@ console.log('order',orderForm)
                         <CFormInput
                           placeholder="Total Price"
                           name="totalPrice"
-                          value={cost}  // Typo in the property name, should be "totalPrice"
+                          value={orderForm.totalPrice}  // Typo in the property name, should be "totalPrice"
                           onChange={handleChange}
                           className="mb-3"
                         />
 
                       </CCol>
                     </CRow>
+                    <CCol md={4}>
+                      <CFormLabel>Total Cost</CFormLabel>
+                      <CFormInput
+                        placeholder="Cost"
+                        name="cost"
+                        value={cost}  // Typo in the property name, should be "totalPrice"
+                        onChange={handleChange}
+                        className="mb-3"
+                      />
+
+                    </CCol>
 
                     <CRow>
                       <CCol xs={6}>
@@ -353,5 +268,5 @@ console.log('order',orderForm)
   );
 };
 
-export default Add;
+export default ExistingCustomers;
 

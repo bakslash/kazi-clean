@@ -13,6 +13,7 @@ import {
   CFormInput,
   CRow,
   CFormLabel,
+  CFormSelect
 } from "@coreui/react";
 
 const AddCustomer = () => {
@@ -22,6 +23,7 @@ const AddCustomer = () => {
     last_name: "",
     phone_number: "",
     address: "",
+    hear_about_us: ""
   });
 
   const handleChange = (e) => {
@@ -30,6 +32,7 @@ const AddCustomer = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log('data',customerForm);
     e.preventDefault();
     const apiUrl = process.env.REACT_APP_API_URL;
     try {
@@ -39,7 +42,8 @@ const AddCustomer = () => {
       if (response.status === 201) {
         // Customer added successfully
         // You can navigate to another page or show a success message
-        navigate('/success');
+        console.log('res',response);
+       // navigate('admin/success');
       } else {
         console.error("Customer creation failed:", response.data.error);
         // Handle error scenario
@@ -51,7 +55,7 @@ const AddCustomer = () => {
   };
 
   return (
-    <div className="min-vh-100 d-flex flex-row align-items-center">
+    <div className="min-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={12}>
@@ -104,6 +108,23 @@ const AddCustomer = () => {
                           className="mb-3"
                         />
                       </CCol>
+                    </CRow>
+                    <CRow>
+                      <CCol md={6}>
+                        <CFormLabel>Hear about us</CFormLabel>
+                        <CFormSelect
+                          aria-label="hear about us"
+                          name="hear_about_us"
+                          value={customerForm.hear_about_us}
+                          onChange={handleChange}
+                          className="mb-3"
+                        >
+                          <option value="">Hear about us</option>
+                          <option value="facebook">facebook </option>
+                          <option value="instagram">instagram</option>
+                        </CFormSelect>
+                      </CCol>
+
                     </CRow>
 
                     <CRow>

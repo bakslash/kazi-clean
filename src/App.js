@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './scss/style.scss'
 //import RequireAuth from "./RequireAuth";
 //import UserService from './services/UserService'
@@ -18,18 +18,12 @@ const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
-// const Add = React.lazy(() => import('./views/pages/NewOrder'))
-// const View = React.lazy(() => import('./views/pages/Orders'))
-// const Report = React.lazy(() => import('./views/pages/Report'))
-// const Inventory = React.lazy(() => import('./views/pages/Inventory'))
-// const Client = React.lazy(() => import('./views/pages/AddCustomers'))
 
-//const Expenses = React.lazy(() => import('./views/pages/Expenses'))
 
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Suspense fallback={loading}>
           <Routes>
             <Route exact path="/" name="Login Page" element={
@@ -45,7 +39,7 @@ class App extends Component {
             } />
           </Routes>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 }

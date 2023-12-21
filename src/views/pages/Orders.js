@@ -12,6 +12,7 @@ import {
   CTableRow,
 } from '@coreui/react';
 import { AppSidebar } from 'src/components';
+import moment from 'moment';
 
 const ViewOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -79,15 +80,15 @@ const ViewOrder = () => {
                     <CTableDataCell>{order.Customer.first_name}</CTableDataCell>
                     <CTableDataCell>{order.Customer.last_name}</CTableDataCell>
                     <CTableDataCell>{order.unitOfMeasure}</CTableDataCell>
-                    <CTableDataCell>{order.pickUpDate}</CTableDataCell>
+                    <CTableDataCell>{moment(order.pickUpDate).format('MM/DD/YYYY')}</CTableDataCell>
                     <CTableDataCell>{order.pickUpTime}</CTableDataCell>
                     <CTableDataCell>{order.totalPrice}</CTableDataCell>
-                    <CTableDataCell>{order.discount}</CTableDataCell>
+                    <CTableDataCell>{order.discountAmount}</CTableDataCell>
                     <CTableDataCell>{order.discountReason}</CTableDataCell>
                     <CTableDataCell>{order.quantity}</CTableDataCell>
                     <CTableDataCell>{order.service}</CTableDataCell>
                     <CTableDataCell>{order.Customer.phone_number}</CTableDataCell>
-                    <CTableDataCell>{order.address}</CTableDataCell>
+                    <CTableDataCell>{order.Customer.address}</CTableDataCell>
                     <CTableDataCell>
                       <CButton color="info" size="sm">
                         Details

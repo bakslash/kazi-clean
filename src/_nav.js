@@ -50,6 +50,17 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'View Income',
+    to: '/admin/income',
+  },
+  {
+    component: CNavItem,
+    name: 'View expenses',
+    to: '/admin/expenses',
+  },
+  
+  {
+    component: CNavItem,
     name: 'Reports',
     to: '/admin/report',
   },

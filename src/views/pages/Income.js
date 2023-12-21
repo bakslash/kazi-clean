@@ -17,15 +17,14 @@ import {
   CTableRow,
 } from '@coreui/react';
 
-const ExpensesTable = () => {
+const Income = () => {
   const [expenseForm, setExpenseForm] = useState({
     date: '',
     description: '',
     paymentMethod: '',
-    vendor: '',
+    amount: '',
     transactionCode: '',
     serviceType: '',
-    amount:''
   });
 
   const expenses = [
@@ -35,7 +34,7 @@ const ExpensesTable = () => {
       date: '2023-01-01',
       description: 'Office Supplies',
       paymentMethod: 'Credit Card',
-      vendor: 'ABC Stationery',
+      amount: '10,000',
       transactionCode: 'TRX123',
       serviceType: 'General',
     },
@@ -60,7 +59,7 @@ const ExpensesTable = () => {
           <CCol md={10}>
             <CCard className="p-4">
               <CCardBody>
-                <h1 className="mb-4">Expenses Table</h1>
+                <h1 className="mb-4">Income Table</h1>
                 <CForm onSubmit={handleSubmit}>
                   <CRow className="mb-3">
                     <CCol md={4}>
@@ -99,11 +98,11 @@ const ExpensesTable = () => {
 
                   <CRow className="mb-3">
                     <CCol md={4}>
-                      <CFormLabel>Vendor</CFormLabel>
+                      <CFormLabel>Amount</CFormLabel>
                       <CFormInput
-                        placeholder="Vendor"
-                        name="vendor"
-                        value={expenseForm.vendor}
+                        placeholder="Amount"
+                        name="amount"
+                        value={expenseForm.amount}
                         onChange={handleChange}
                       />
                     </CCol>
@@ -130,17 +129,6 @@ const ExpensesTable = () => {
                       </CFormSelect>
                     </CCol>
                   </CRow>
-                  <CRow>
-                  <CCol md={4}>
-                      <CFormLabel>Amount </CFormLabel>
-                      <CFormInput
-                        placeholder="Amount "
-                        name="amount"
-                        value={expenseForm.amount}
-                        onChange={handleChange}
-                      />
-                    </CCol>
-                  </CRow>
 
                   <CButton type="submit" color="primary" className="px-4 my-4">
                     Submit
@@ -153,7 +141,7 @@ const ExpensesTable = () => {
                       <CTableDataCell>Date</CTableDataCell>
                       <CTableDataCell>Description</CTableDataCell>
                       <CTableDataCell>Payment Method</CTableDataCell>
-                      <CTableDataCell>Vendor</CTableDataCell>
+                      <CTableDataCell>Amount</CTableDataCell>
                       <CTableDataCell>Transaction Code</CTableDataCell>
                       <CTableDataCell>Service Type</CTableDataCell>
                     </CTableRow>
@@ -164,7 +152,7 @@ const ExpensesTable = () => {
                         <CTableDataCell>{expense.date}</CTableDataCell>
                         <CTableDataCell>{expense.description}</CTableDataCell>
                         <CTableDataCell>{expense.paymentMethod}</CTableDataCell>
-                        <CTableDataCell>{expense.vendor}</CTableDataCell>
+                        <CTableDataCell>{expense.amount}</CTableDataCell>
                         <CTableDataCell>{expense.transactionCode}</CTableDataCell>
                         <CTableDataCell>{expense.serviceType}</CTableDataCell>
                       </CTableRow>
@@ -180,4 +168,4 @@ const ExpensesTable = () => {
   );
 };
 
-export default ExpensesTable;
+export default Income;

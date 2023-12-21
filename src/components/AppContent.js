@@ -12,6 +12,7 @@ const AppContent = () => {
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
           {routes.map((route, idx) => {
+            console.log('route',route);
             return (
               route.element && (
                 <Route

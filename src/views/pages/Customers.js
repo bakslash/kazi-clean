@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from 'moment';
 import axios from "axios";
 import {
  // CButton,
@@ -25,6 +26,7 @@ const ViewCustomers = () => {
         const response = await axios.get(`${apiUrl}/customers`);
 
         if (response.status === 200) {
+          console.log('res',response);
           setCustomers(response.data);
         } else {
           console.error("Failed to fetch customers:", response.data.error);
@@ -54,8 +56,8 @@ const ViewCustomers = () => {
                         <CTableDataCell>Last Name</CTableDataCell>
                         <CTableDataCell>Address</CTableDataCell>
                         <CTableDataCell>Phone Number</CTableDataCell>
-                        <CTableDataCell>Created At</CTableDataCell>
-                        <CTableDataCell>Updated At</CTableDataCell>
+                        <CTableDataCell>Join Date </CTableDataCell>
+                        <CTableDataCell>Hear about us At</CTableDataCell>
                       </CTableRow>
                     </CTableHead>
                     <CTableBody>
@@ -66,8 +68,8 @@ const ViewCustomers = () => {
                           <CTableDataCell>{customer.last_name}</CTableDataCell>
                           <CTableDataCell>{customer.address}</CTableDataCell>
                           <CTableDataCell>{customer.phone_number}</CTableDataCell>
-                          <CTableDataCell>{customer.createdAt}</CTableDataCell>
-                          <CTableDataCell>{customer.updatedAt}</CTableDataCell>
+                          <CTableDataCell>{moment(customer.createdAt).format('MM/DD/YYYY')}</CTableDataCell>
+                          <CTableDataCell>{customer.hear_about_us}</CTableDataCell>
                         </CTableRow>
                       ))}
                     </CTableBody>
