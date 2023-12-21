@@ -26,8 +26,7 @@ import {
 
 const Add = () => {
   //  const navigate = useNavigate();
-  const [user, setUser] = useState({ roleId: "" });
-  const [services, setServices] = useState(['carpet', 'laundry']);
+
   const [orderForm, setOrderForm] = useState({
     date: "",
     first_name: "",
@@ -45,29 +44,11 @@ const Add = () => {
   });
 
   const [cost, setCost] = useState();
+
+
   const [phoneData, setPhoneData] = useState({ phone_number: "" });
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await userRoles();
-        if (response.status === 200) {
-          setRoles(response.data);
-          setServices(response)
-         
-        } else {
-          const errorMessage = response.data.message || "role fetching failed";
-          console.error(errorMessage);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, []);
-
-
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -86,8 +67,7 @@ const Add = () => {
       const response = await axios.post(`${apiUrl}/customers/phone`, phoneData);
 
       if (response.status === 200) {
-        setCustomer(response.data);
-        console.log('res1', response.data);
+      
 
         // Use navigate to programmatically navigate to the specified route
         navigate(`/admin/existing_customer/${response.data.id}`);
