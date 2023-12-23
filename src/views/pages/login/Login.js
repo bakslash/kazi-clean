@@ -143,7 +143,7 @@ const Login = () => {
                         onChange={handleChange}
                       />
                     </CInputGroup>
-                    <CFormSelect
+                    {/* <CFormSelect
   aria-label="Role select"
   onChange={handleRoleChange}
   name="role"
@@ -153,7 +153,7 @@ const Login = () => {
       {role.role}
     </option>
   ))}
-</CFormSelect>
+</CFormSelect> */}
 
 
                     <CRow>
